@@ -1,3 +1,5 @@
+using ApirCrud.Students;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +18,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("Hello-world", ()=> "Hello World!");
+app.AddEndpointsStudents();
 
 app.Run();
