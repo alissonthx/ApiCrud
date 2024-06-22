@@ -12,4 +12,9 @@ public class Student
         Id = Guid.NewGuid();
         Active = true;
     }
+
+    public void UpdateName(string name)
+    {
+        Name = name;
+    }
 }

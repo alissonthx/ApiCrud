@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
     {
         optionsBuilder.UseSqlite("Data Source = Database.sqlite");
         optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
+        optionsBuilder.EnableSensitiveDataLogging();
         base.OnConfiguring(optionsBuilder);
     }
 }

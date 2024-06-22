@@ -24,5 +24,25 @@ public static class StudentsEndpoints
 
             return Results.Ok(newStudent);
         });
+
+        endpointsStudents.MapGet("", async (AppDbContext context) =>
+        {
+            var students = await context.Students.Where(Student => Student.Active).ToListAsync();
+            return students;
+        });
+
+        // Update Student Name
+        endpointsStudents.MapPut("{id}", async (Guid id, UpdateStudentRequest request, AppDbContext context) =>
+        {
+            var student = await context.Students.SingleOrDefaultAsync(student => student.Id == id);
+
+            if (student == null)
+                return Results.NotFound();
+            student.UpdateName(request.Name);
+
+            await context.SaveChangesAsync();
+
+            return Results.Ok(student);
+        });
     }
 }
