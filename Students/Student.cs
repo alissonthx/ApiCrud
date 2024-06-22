@@ -12,4 +12,14 @@ public class Student
         Id = Guid.NewGuid();
         Active = true;
     }
+
+    public void SoftDelete()
+    {
+        Active = false;
+    }
+
+    public void UpdateName(string name)
+    {
+        Name = name;
+    }
 }
