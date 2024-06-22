@@ -22,12 +22,18 @@ public static class StudentsEndpoints
             await context.Students.AddAsync(newStudent);
             await context.SaveChangesAsync();
 
+            var studentReturn = new StudentDto(newStudent.Id, newStudent.Name);
+
             return Results.Ok(newStudent);
         });
 
         endpointsStudents.MapGet("", async (AppDbContext context) =>
         {
-            var students = await context.Students.Where(Student => Student.Active).ToListAsync();
+            var students = await context.Students
+            .Where(Student => Student.Active)
+            .Select(Student => new StudentDto(Student.Id, Student.Name))
+            .ToListAsync();
+
             return students;
         });
 
@@ -42,7 +48,7 @@ public static class StudentsEndpoints
 
             await context.SaveChangesAsync();
 
-            return Results.Ok(student);
+            return Results.Ok(new StudentDto(student.Id, student.Name));
         });
     }
 }
