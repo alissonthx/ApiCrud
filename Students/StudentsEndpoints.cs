@@ -50,5 +50,18 @@ public static class StudentsEndpoints
 
             return Results.Ok(new StudentDto(student.Id, student.Name));
         });
+
+        endpointsStudents.MapDelete("{id}", async (Guid id, AppDbContext context) =>
+        {
+            var student = await context.Students.SingleOrDefaultAsync(student => student.Id == id);
+
+            if (student == null)
+                return Results.NotFound();
+
+            student.SoftDelete();
+
+            await context.SaveChangesAsync();
+            return Results.Ok();
+        });
     }
 }

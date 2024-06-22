@@ -13,6 +13,11 @@ public class Student
         Active = true;
     }
 
+    public void SoftDelete()
+    {
+        Active = false;
+    }
+
     public void UpdateName(string name)
     {
         Name = name;
