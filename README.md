@@ -38,7 +38,7 @@ This API allows you to manage students in a database. It provides endpoints to c
     dotnet run
     ```
 
-5. Open Swagger UI in your browser to interact with the API:
+5. Check the port you got and open Swagger UI in your browser to interact with the API:
 
     ```
     http://localhost:5000/swagger
@@ -71,10 +71,10 @@ curl -X POST "http://localhost:5000/students" -H "Content-Type: application/```j
 ```
 
 ## Get All Students
-- URL: /students
-- Method: GET
-- Responses:
-  - 200 OK: Returns a list of active students.
+- **URL:** `/students`
+- **Method:** `GET`
+- **Responses:**
+  - `200 OK`: Returns a list of active students.
 
 Example Request
 
@@ -83,11 +83,11 @@ curl -X GET "http://localhost:5000/students"
 ```
 
 ## Update Student
-- URL: /students/{id}
+- **URL:** `/students/{id}`
 
-- Method: PUT
+- **Method:** `PUT`
 
-- Request Body:
+- **Request Body:**
 
 ```json
 {
@@ -95,10 +95,10 @@ curl -X GET "http://localhost:5000/students"
 }
 ```
 
-- Responses:
+- **Responses:**
 
-  - 200 OK: Successfully updated the student's name.
-  - 404 Not Found: Student not found.
+  - `200 OK`: Successfully updated the student's name.
+  - `404 Not Found`: Student not found.
     
 Example Request
 ```bash
@@ -107,35 +107,35 @@ curl -X PUT "http://localhost:5000/students/{id}" -H "Content-Type: application/
 }'
 ```
 
-## Soft Delete Student
+## Delete Student
 - URL: /students/{id}
 - Method: DELETE
 - Responses:
-  -200 OK: Successfully deleted (soft delete) the student.
-  -404 Not Found: Student not found.
+  -`200 OK`: Successfully deleted (soft delete) the student.
+  -`404 Not Found`: Student not found.
   
 Example Request
 ```bash
 curl -X DELETE "http://localhost:5000/students/{id}"
 ```
 
-Models
+## Models
 
-AddStudentRequest
+### AddStudentRequest
 ```json
 {
   "name": "string"
 }
 ```
 
-UpdateStudentRequest
+### UpdateStudentRequest
 ```json
 {
   "name": "string"
 }
 ```
 
-## StudentDto
+### StudentDto
 ```json
 {
   "id": "string",
